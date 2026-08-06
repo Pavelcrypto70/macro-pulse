@@ -44,6 +44,8 @@ class LivePulseRepository {
       'https://pavelcrypto70.github.io/macro-pulse/live_snapshot.json';
   static const rawUrl =
       'https://raw.githubusercontent.com/Pavelcrypto70/macro-pulse/gh-pages/data/live_snapshot.json';
+  static const jsdelivrUrl =
+      'https://cdn.jsdelivr.net/gh/Pavelcrypto70/macro-pulse@gh-pages/data/live_snapshot.json';
   static const pagesAssetUrl =
       'https://pavelcrypto70.github.io/macro-pulse/assets/assets/data/live_snapshot.json';
 
@@ -93,10 +95,11 @@ class LivePulseRepository {
     final uris = <Uri>[
       if (kIsWeb) Uri.base.resolve('live_snapshot.json'),
       if (kIsWeb) Uri.base.resolve('data/live_snapshot.json'),
+      Uri.parse(jsdelivrUrl),
+      Uri.parse(rawUrl),
       Uri.parse(pagesRootUrl),
       Uri.parse(pagesUrl),
       Uri.parse(pagesAssetUrl),
-      Uri.parse(rawUrl),
     ];
     Object? lastError;
     for (final uri in uris) {
