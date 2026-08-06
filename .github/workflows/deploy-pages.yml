@@ -34,6 +34,7 @@ jobs:
       - run: |
           mkdir -p build/web/data
           cp web/data/live_snapshot.json build/web/data/live_snapshot.json
+          cp web/data/live_snapshot.json build/web/live_snapshot.json
           touch build/web/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

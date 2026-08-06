@@ -40,8 +40,12 @@ class LivePulseRepository {
   static const assetPath = 'assets/data/live_snapshot.json';
   static const pagesUrl =
       'https://pavelcrypto70.github.io/macro-pulse/data/live_snapshot.json';
+  static const pagesRootUrl =
+      'https://pavelcrypto70.github.io/macro-pulse/live_snapshot.json';
   static const rawUrl =
       'https://raw.githubusercontent.com/Pavelcrypto70/macro-pulse/gh-pages/data/live_snapshot.json';
+  static const pagesAssetUrl =
+      'https://pavelcrypto70.github.io/macro-pulse/assets/assets/data/live_snapshot.json';
 
   final http.Client _client;
 
@@ -87,8 +91,11 @@ class LivePulseRepository {
 
   Future<LiveSnapshot> _fetchNetwork() async {
     final uris = <Uri>[
+      if (kIsWeb) Uri.base.resolve('live_snapshot.json'),
       if (kIsWeb) Uri.base.resolve('data/live_snapshot.json'),
+      Uri.parse(pagesRootUrl),
       Uri.parse(pagesUrl),
+      Uri.parse(pagesAssetUrl),
       Uri.parse(rawUrl),
     ];
     Object? lastError;
