@@ -3,6 +3,7 @@ import '../../state/app_state.dart';
 import '../../theme/app_colors.dart';
 import 'archive_screen.dart';
 import 'glossary_screen.dart';
+import 'language_gate_screen.dart';
 import 'learn_screen.dart';
 import 'legal_gate_screen.dart';
 import 'profile_screen.dart';
@@ -31,13 +32,19 @@ class _AppShellState extends State<AppShell> {
       );
     }
 
+    // 1) Language first — never enter app UI before this.
+    if (!state.languageChosen) {
+      return LanguageGateScreen(onPick: state.chooseLanguage);
+    }
+
+    // 2) Then disclaimer in the chosen language.
     if (!state.legalAccepted) {
       return LegalGateScreen(s: s, onAccept: () => state.acceptLegal());
     }
 
     final pages = [
-      PulseHomeScreen(s: s, lang: lang),
-      ArchiveScreen(s: s, lang: lang),
+      PulseHomeScreen(state: state),
+      ArchiveScreen(state: state),
       LearnScreen(s: s, lang: lang),
       GlossaryScreen(s: s, lang: lang),
       ProfileScreen(state: state),

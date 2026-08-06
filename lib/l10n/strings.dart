@@ -43,7 +43,7 @@ class S {
         'Clima matinal do mercado · 5 cartões',
       );
   String get freeBadge => 'FREE #3 · EN/RU/ES/PT';
-  String get webBadge => 'WEB · r2';
+  String get webBadge => 'WEB · r4';
   String get educationOnly => _t(
         'Education only. Not financial advice.',
         'Только обучение. Не финансовый совет.',
@@ -72,22 +72,22 @@ class S {
   String get legalBody => _t(
         'Macro Pulse is an educational app about macroeconomics and equity-market context.\n\n'
             '• Not signals. Not buy/sell recommendations.\n'
-            '• Web demo numbers are a curated educational snapshot (not a live terminal).\n'
+            '• Numbers are delayed public educational data (FRED / Yahoo / FX) — not a live trading terminal.\n'
             '• You alone are responsible for market decisions.\n'
             '• Community: Desk Club (EN) — practice & literacy, no “enter now”.',
         'Macro Pulse — образовательное приложение о макроэкономике и контексте фондового рынка.\n\n'
             '• Это не сигналы и не рекомендации купить/продать.\n'
-            '• Цифры в веб-демо — учебный снимок (не живой терминал).\n'
+            '• Цифры — отложенные публичные данные (FRED / Yahoo / FX), не живой торговый терминал.\n'
             '• Решения на рынке принимаете только вы.\n'
             '• Сообщество: Desk Club (EN) — практика и грамотность, без «вход сейчас».',
         'Macro Pulse es una app educativa sobre macroeconomía y contexto de acciones.\n\n'
             '• No son señales ni recomendaciones de compra/venta.\n'
-            '• Los números del demo web son una muestra educativa (no un terminal en vivo).\n'
+            '• Los números son datos públicos diferidos (FRED / Yahoo / FX) — no un terminal en vivo.\n'
             '• Tú eres responsable de tus decisiones de mercado.\n'
             '• Comunidad: Desk Club (EN) — práctica y alfabetización, sin “entra ahora”.',
         'Macro Pulse é um app educativo sobre macroeconomia e contexto de ações.\n\n'
             '• Não são sinais nem recomendações de compra/venda.\n'
-            '• Os números do demo web são uma amostra educativa (não um terminal ao vivo).\n'
+            '• Os números são dados públicos defasados (FRED / Yahoo / FX) — não um terminal ao vivo.\n'
             '• Você é responsável pelas suas decisões de mercado.\n'
             '• Comunidade: Desk Club (EN) — prática e alfabetização, sem “entre agora”.',
       );
@@ -101,10 +101,28 @@ class S {
   String get relatedTerms => _t('Related terms', 'Связанные термины', 'Términos relacionados', 'Termos relacionados');
   String get back => _t('Back', 'Назад', 'Atrás', 'Voltar');
   String get demoNote => _t(
-        'Educational snapshot · not live quotes',
-        'Учебный снимок · не живые котировки',
-        'Muestra educativa · no cotizaciones en vivo',
-        'Amostra educativa · sem cotações ao vivo',
+        'Educational framing · delayed public data',
+        'Обучающий разбор · отложенные публичные данные',
+        'Enfoque educativo · datos públicos diferidos',
+        'Leitura educativa · dados públicos defasados',
+      );
+  String get liveDataNote => _t(
+        'Live pull · delayed public series · not a trading terminal',
+        'Подтянуто · отложенные публичные ряды · не торговый терминал',
+        'Datos traídos · series públicas diferidas · no es terminal',
+        'Dados puxados · séries públicas defasadas · não é terminal',
+      );
+  String dataAsOf(String iso) => _t(
+        'As of $iso',
+        'На дату $iso',
+        'Al $iso',
+        'Em $iso',
+      );
+  String get refreshData => _t(
+        'Refresh data',
+        'Обновить данные',
+        'Actualizar datos',
+        'Atualizar dados',
       );
   String get archiveTitle => _t('14-day archive', 'Архив 14 дней', 'Archivo 14 días', 'Arquivo 14 dias');
   String get archiveHint => _t(

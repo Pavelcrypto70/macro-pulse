@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../data/pulse_catalog.dart';
 import '../../l10n/strings.dart';
 import '../../models/models.dart';
+import '../../state/app_state.dart';
 import '../../theme/app_colors.dart';
 import '../widgets/common.dart';
 import 'card_detail_screen.dart';
 
 class PulseHomeScreen extends StatelessWidget {
-  const PulseHomeScreen({super.key, required this.s, required this.lang});
-  final S s;
-  final AppLang lang;
+  const PulseHomeScreen({super.key, required this.state});
+  final AppState state;
 
   @override
   Widget build(BuildContext context) {
-    final day = PulseCatalog.today;
+    final s = state.s;
+    final lang = state.lang;
+    final day = state.todayPulse;
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
@@ -26,7 +27,18 @@ class PulseHomeScreen extends StatelessWidget {
                   children: [
                     BrassChip(s.freeBadge, filled: true),
                     const SizedBox(width: 8),
-                    BrassChip(PulseCatalog.stamp),
+                    BrassChip(state.pulseStamp),
+                    if (state.pulseLoading) ...[
+                      const SizedBox(width: 8),
+                      const SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppColors.brass,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -34,8 +46,27 @@ class PulseHomeScreen extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(s.tagline, style: Theme.of(context).textTheme.bodyMedium),
                 const SizedBox(height: 10),
-                Text(s.demoNote, style: Theme.of(context).textTheme.bodySmall),
-                const SizedBox(height: 16),
+                Text(
+                  state.pulseIsLive ? s.liveDataNote : s.demoNote,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                if (state.pulseAsOf != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    s.dataAsOf(state.pulseAsOf!),
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ],
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: state.pulseLoading ? null : () => state.refreshPulse(),
+                    icon: const Icon(Icons.refresh, size: 18),
+                    label: Text(s.refreshData),
+                  ),
+                ),
+                const SizedBox(height: 8),
                 SoftCard(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,22 +132,6 @@ class _PulseCardTile extends StatelessWidget {
   final AppLang lang;
   final VoidCallback onTap;
 
-  String get _kindLabel => switch (card.kind) {
-        PulseCardKind.rates => s.cardRates,
-        PulseCardKind.inflation => s.cardInflation,
-        PulseCardKind.dollar => s.cardDollar,
-        PulseCardKind.mood => s.cardMood,
-        PulseCardKind.equities => s.cardEquities,
-      };
-
-  IconData get _icon => switch (card.kind) {
-        PulseCardKind.rates => Icons.account_balance_outlined,
-        PulseCardKind.inflation => Icons.shopping_bag_outlined,
-        PulseCardKind.dollar => Icons.attach_money,
-        PulseCardKind.mood => Icons.psychology_alt_outlined,
-        PulseCardKind.equities => Icons.show_chart,
-      };
-
   @override
   Widget build(BuildContext context) {
     return SoftCard(
@@ -124,38 +139,24 @@ class _PulseCardTile extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: AppColors.inkElevated,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.inkLine),
-            ),
-            child: Icon(_icon, color: AppColors.brass, size: 22),
+          Text(
+            index.toString().padLeft(2, '0'),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.brass),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text('$index · $_kindLabel', style: Theme.of(context).textTheme.labelLarge),
-                    const Spacer(),
-                    Text(
-                      s.tapForDetail,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.brassDim),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 6),
                 Text(card.headline.of(lang), style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 6),
                 Text(card.valueLabel.of(lang), style: Theme.of(context).textTheme.bodyLarge),
+                const SizedBox(height: 8),
+                Text(s.tapForDetail, style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
           ),
+          const Icon(Icons.chevron_right, color: AppColors.brass),
         ],
       ),
     );

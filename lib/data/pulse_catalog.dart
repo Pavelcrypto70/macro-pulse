@@ -1,14 +1,18 @@
 import '../models/models.dart';
 
-/// Curated educational snapshot pack (not live market data).
+/// Curated educational copy pack. Numeric values come from [LivePulseRepository].
 class PulseCatalog {
-  static const stamp = 'WEB · r2';
+  static const stamp = 'WEB · r4';
   static const demoAsOf = '2026-08-06';
 
+  /// Explanatory template for "today" — values overwritten by live snapshot.
+  static PulseDay get templateToday => _today;
+
+  /// Prior days keep curated teaching values (habit archive).
+  static List<PulseDay> get archiveDays => _buildArchive(_today.cards);
+
   static List<PulseDay> get days {
-    final today = _today;
-    final archive = _buildArchive(today.cards);
-    return [today, ...archive];
+    return [_today, ...archiveDays];
   }
 
   static PulseDay get today => days.first;

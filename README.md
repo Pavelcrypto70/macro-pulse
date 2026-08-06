@@ -11,7 +11,7 @@ https://pavelcrypto70.github.io/macro-pulse/
 Paper League + Structure Radar + **Macro Pulse** → [Desk Club](https://t.me/Desk_Club) → Trade Master
 
 ## Stack
-Flutter (web / Android / iOS scaffold) · EN/RU · brass terminal visual language
+Flutter (web / Android / iOS scaffold) · **EN/RU/ES/PT** · brass terminal visual language
 
 ## Local run
 ```bash

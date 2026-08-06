@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../data/pulse_catalog.dart';
-import '../../l10n/strings.dart';
+import '../../state/app_state.dart';
 import '../widgets/common.dart';
 import 'card_detail_screen.dart';
 
 class ArchiveScreen extends StatelessWidget {
-  const ArchiveScreen({super.key, required this.s, required this.lang});
-  final S s;
-  final AppLang lang;
+  const ArchiveScreen({super.key, required this.state});
+  final AppState state;
 
   @override
   Widget build(BuildContext context) {
-    final days = PulseCatalog.days;
+    final s = state.s;
+    final lang = state.lang;
+    final days = state.pulseDays;
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
       children: [
@@ -69,14 +69,8 @@ class ArchiveScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      BrassChip(day.dateIso),
-                      const Spacer(),
-                      Text('${day.cards.length}', style: Theme.of(context).textTheme.labelLarge),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
+                  Text(day.dateIso, style: Theme.of(context).textTheme.labelLarge),
+                  const SizedBox(height: 6),
                   Text(day.summary.of(lang), style: Theme.of(context).textTheme.bodyLarge),
                 ],
               ),

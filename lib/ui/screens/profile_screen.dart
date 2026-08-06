@@ -96,6 +96,18 @@ class ProfileScreen extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         OutlinedButton(
+          onPressed: () async => state.resetLanguageChoice(),
+          child: Text(
+            switch (state.lang) {
+              AppLang.ru => 'Сменить язык (с начала)',
+              AppLang.es => 'Cambiar idioma (desde el inicio)',
+              AppLang.pt => 'Mudar idioma (do início)',
+              AppLang.en => 'Change language (from start)',
+            },
+          ),
+        ),
+        const SizedBox(height: 8),
+        OutlinedButton(
           onPressed: () async => state.resetLegal(),
           child: Text(s.resetLegal),
         ),
