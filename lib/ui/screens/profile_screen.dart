@@ -9,7 +9,6 @@ class ProfileScreen extends StatelessWidget {
   final AppState state;
 
   S get s => state.s;
-  bool get isRu => state.isRu;
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +23,20 @@ class ProfileScreen extends StatelessWidget {
             children: [
               SectionTitle(s.language),
               const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: AppLang.values.map((l) {
+                  final selected = state.lang == l;
+                  return SizedBox(
+                    width: (MediaQuery.sizeOf(context).width - 64) / 2,
                     child: _LangBtn(
-                      label: 'English',
-                      selected: !isRu,
-                      onTap: () => state.setLang(AppLang.en),
+                      label: l.nativeLabel,
+                      selected: selected,
+                      onTap: () => state.setLang(l),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: _LangBtn(
-                      label: 'Русский',
-                      selected: isRu,
-                      onTap: () => state.setLang(AppLang.ru),
-                    ),
-                  ),
-                ],
+                  );
+                }).toList(),
               ),
             ],
           ),
@@ -53,11 +48,11 @@ class ProfileScreen extends StatelessWidget {
             children: [
               SectionTitle(s.streakLabel),
               const SizedBox(height: 8),
-              Text('14', style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: AppColors.brass)),
               Text(
-                isRu ? 'учебный архив в демо' : 'demo archive length',
-                style: Theme.of(context).textTheme.bodySmall,
+                '14',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: AppColors.brass),
               ),
+              Text(s.demoArchiveLen, style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
         ),
@@ -101,9 +96,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         OutlinedButton(
-          onPressed: () async {
-            await state.resetLegal();
-          },
+          onPressed: () async => state.resetLegal(),
           child: Text(s.resetLegal),
         ),
         const SizedBox(height: 8),

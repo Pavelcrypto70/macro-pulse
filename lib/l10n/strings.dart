@@ -1,90 +1,184 @@
-enum AppLang { en, ru }
+enum AppLang { en, ru, es, pt }
 
 extension AppLangX on AppLang {
-  bool get isRu => this == AppLang.ru;
-  String get code => isRu ? 'ru' : 'en';
-  AppLang get other => isRu ? AppLang.en : AppLang.ru;
+  String get code => switch (this) {
+        AppLang.en => 'en',
+        AppLang.ru => 'ru',
+        AppLang.es => 'es',
+        AppLang.pt => 'pt',
+      };
+
+  String get nativeLabel => switch (this) {
+        AppLang.en => 'English',
+        AppLang.ru => 'Русский',
+        AppLang.es => 'Español',
+        AppLang.pt => 'Português',
+      };
 }
 
-/// Bilingual strings for Macro Pulse MVP.
+AppLang appLangFromCode(String? code) => switch (code) {
+      'ru' => AppLang.ru,
+      'es' => AppLang.es,
+      'pt' => AppLang.pt,
+      _ => AppLang.en,
+    };
+
+/// UI chrome strings — EN / RU / ES / PT (LATAM).
 class S {
   S(this.lang);
   final AppLang lang;
-  bool get ru => lang.isRu;
+
+  String _t(String en, String ru, String es, String pt) => switch (lang) {
+        AppLang.en => en,
+        AppLang.ru => ru,
+        AppLang.es => es,
+        AppLang.pt => pt,
+      };
 
   String get appName => 'Macro Pulse';
-  String get tagline => ru
-      ? 'Утренняя погода рынков · 5 карточек'
-      : 'Morning market weather · 5 cards';
-  String get freeBadge => ru ? 'FREE #3 · EN/RU' : 'FREE #3 · EN/RU';
-  String get webBadge => 'WEB · r1';
-  String get educationOnly =>
-      ru ? 'Только обучение. Не финансовый совет.' : 'Education only. Not financial advice.';
+  String get tagline => _t(
+        'Morning market weather · 5 cards',
+        'Утренняя погода рынков · 5 карточек',
+        'Clima matutino del mercado · 5 tarjetas',
+        'Clima matinal do mercado · 5 cartões',
+      );
+  String get freeBadge => 'FREE #3 · EN/RU/ES/PT';
+  String get webBadge => 'WEB · r2';
+  String get educationOnly => _t(
+        'Education only. Not financial advice.',
+        'Только обучение. Не финансовый совет.',
+        'Solo educación. No es consejo financiero.',
+        'Apenas educação. Não é aconselhamento financeiro.',
+      );
 
-  String get tabPulse => ru ? 'Пульс' : 'Pulse';
-  String get tabArchive => ru ? 'Архив' : 'Archive';
-  String get tabLearn => ru ? 'Обучение' : 'Learn';
-  String get tabGlossary => ru ? 'Глоссарий' : 'Glossary';
-  String get tabProfile => ru ? 'Профиль' : 'Profile';
+  String get tabPulse => _t('Pulse', 'Пульс', 'Pulso', 'Pulso');
+  String get tabArchive => _t('Archive', 'Архив', 'Archivo', 'Arquivo');
+  String get tabLearn => _t('Learn', 'Обучение', 'Aprender', 'Aprender');
+  String get tabGlossary => _t('Glossary', 'Глоссарий', 'Glosario', 'Glossário');
+  String get tabProfile => _t('Profile', 'Профиль', 'Perfil', 'Perfil');
 
-  String get acceptContinue => ru ? 'Понятно, продолжить' : 'I understand — continue';
-  String get legalTitle => ru ? 'Перед стартом' : 'Before you start';
-  String get legalBody => ru
-      ? 'Macro Pulse — образовательное приложение о макроэкономике и контексте фондового рынка.\n\n'
-          '• Это не сигналы и не рекомендации купить/продать.\n'
-          '• Цифры в веб-демо — учебный снимок (не живой терминал).\n'
-          '• Решения на рынке принимаете только вы.\n'
-          '• Сообщество: Desk Club (EN) — практика и грамотность, без «вход сейчас».'
-      : 'Macro Pulse is an educational app about macroeconomics and equity-market context.\n\n'
-          '• Not signals. Not buy/sell recommendations.\n'
-          '• Web demo numbers are a curated educational snapshot (not a live terminal).\n'
-          '• You alone are responsible for market decisions.\n'
-          '• Community: Desk Club (EN) — practice & literacy, no “enter now”.';
+  String get acceptContinue => _t(
+        'I understand — continue',
+        'Понятно, продолжить',
+        'Entiendo — continuar',
+        'Entendi — continuar',
+      );
+  String get legalTitle => _t(
+        'Before you start',
+        'Перед стартом',
+        'Antes de empezar',
+        'Antes de começar',
+      );
+  String get legalBody => _t(
+        'Macro Pulse is an educational app about macroeconomics and equity-market context.\n\n'
+            '• Not signals. Not buy/sell recommendations.\n'
+            '• Web demo numbers are a curated educational snapshot (not a live terminal).\n'
+            '• You alone are responsible for market decisions.\n'
+            '• Community: Desk Club (EN) — practice & literacy, no “enter now”.',
+        'Macro Pulse — образовательное приложение о макроэкономике и контексте фондового рынка.\n\n'
+            '• Это не сигналы и не рекомендации купить/продать.\n'
+            '• Цифры в веб-демо — учебный снимок (не живой терминал).\n'
+            '• Решения на рынке принимаете только вы.\n'
+            '• Сообщество: Desk Club (EN) — практика и грамотность, без «вход сейчас».',
+        'Macro Pulse es una app educativa sobre macroeconomía y contexto de acciones.\n\n'
+            '• No son señales ni recomendaciones de compra/venta.\n'
+            '• Los números del demo web son una muestra educativa (no un terminal en vivo).\n'
+            '• Tú eres responsable de tus decisiones de mercado.\n'
+            '• Comunidad: Desk Club (EN) — práctica y alfabetización, sin “entra ahora”.',
+        'Macro Pulse é um app educativo sobre macroeconomia e contexto de ações.\n\n'
+            '• Não são sinais nem recomendações de compra/venda.\n'
+            '• Os números do demo web são uma amostra educativa (não um terminal ao vivo).\n'
+            '• Você é responsável pelas suas decisões de mercado.\n'
+            '• Comunidade: Desk Club (EN) — prática e alfabetização, sem “entre agora”.',
+      );
 
-  String get todayPulse => ru ? 'Пульс сегодня' : "Today's pulse";
-  String get tapForDetail => ru ? 'Нажми для разбора' : 'Tap for detail';
-  String get whatItMeans => ru ? 'Что это значит' : 'What this means';
-  String get forEquities => ru ? 'Для акций' : 'For equities';
-  String get whyItMatters => ru ? 'Почему важно' : 'Why it matters';
-  String get commonMistake => ru ? 'Частая ошибка' : 'Common mistake';
-  String get relatedTerms => ru ? 'Связанные термины' : 'Related terms';
-  String get back => ru ? 'Назад' : 'Back';
-  String get demoNote => ru
-      ? 'Учебный снимок · не живые котировки'
-      : 'Educational snapshot · not live quotes';
-  String get archiveTitle => ru ? 'Архив 14 дней' : '14-day archive';
-  String get archiveHint => ru
-      ? 'Листай прошлые утренние сводки — привычка читать погоду, а не гнаться за новостью.'
-      : 'Browse past morning briefs — build the habit of reading weather, not chasing headlines.';
-  String get learnTitle => ru ? 'Как читать пульс' : 'How to read the pulse';
-  String get learnIntro => ru
-      ? 'Короткий гид: зачем пять карточек и как не превратить макро в сигналы.'
-      : 'Short guide: why five cards exist and how not to turn macro into signals.';
-  String get glossaryTitle => ru ? 'Общий язык' : 'Shared language';
-  String get glossaryHint => ru
-      ? 'Термины простым языком. Глубокая система — в Trade Master.'
-      : 'Terms in plain language. Full curriculum lives in Trade Master.';
-  String get profileTitle => ru ? 'Профиль' : 'Profile';
-  String get language => ru ? 'Язык' : 'Language';
-  String get community => ru ? 'Сообщество' : 'Community';
-  String get joinDeskClub => ru ? 'Вступить в Desk Club' : 'Join Desk Club';
-  String get deskClubSub => ru
-      ? 'EN-хаб портфеля: практика · структура · академия'
-      : 'EN hub: practice · structure · academy';
-  String get softAcademy => ru
-      ? 'Хочешь систему целиком → Trade Master (платно)'
-      : 'Want the full system → Trade Master (paid)';
-  String get about => ru ? 'О приложении' : 'About';
-  String get aboutBody => ru
-      ? 'Macro Pulse = Free #3 в воронке:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nЦель: ежедневная макро-грамотность за 2–3 минуты.'
-      : 'Macro Pulse = Free #3 in the funnel:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nGoal: daily macro literacy in 2–3 minutes.';
-  String get resetLegal => ru ? 'Показать дисклеймер снова' : 'Show disclaimer again';
-  String get openLegal => ru ? 'Правила и дисклеймер' : 'Rules & disclaimer';
-  String get visualGuide => ru ? 'Макеты экранов' : 'Screen concepts';
-  String get streakLabel => ru ? 'Дней с пульсом (демо)' : 'Pulse days (demo)';
-  String get cardRates => ru ? 'Ставки' : 'Rates';
-  String get cardInflation => ru ? 'Инфляция' : 'Inflation';
-  String get cardDollar => ru ? 'Доллар' : 'Dollar';
-  String get cardMood => ru ? 'Настроение' : 'Risk mood';
-  String get cardEquities => ru ? 'Для акций' : 'For equities';
+  String get todayPulse => _t("Today's pulse", 'Пульс сегодня', 'Pulso de hoy', 'Pulso de hoje');
+  String get tapForDetail => _t('Tap for detail', 'Нажми для разбора', 'Toca para detalle', 'Toque para detalhe');
+  String get whatItMeans => _t('What this means', 'Что это значит', 'Qué significa', 'O que isso significa');
+  String get forEquities => _t('For equities', 'Для акций', 'Para acciones', 'Para ações');
+  String get whyItMatters => _t('Why it matters', 'Почему важно', 'Por qué importa', 'Por que importa');
+  String get commonMistake => _t('Common mistake', 'Частая ошибка', 'Error común', 'Erro comum');
+  String get relatedTerms => _t('Related terms', 'Связанные термины', 'Términos relacionados', 'Termos relacionados');
+  String get back => _t('Back', 'Назад', 'Atrás', 'Voltar');
+  String get demoNote => _t(
+        'Educational snapshot · not live quotes',
+        'Учебный снимок · не живые котировки',
+        'Muestra educativa · no cotizaciones en vivo',
+        'Amostra educativa · sem cotações ao vivo',
+      );
+  String get archiveTitle => _t('14-day archive', 'Архив 14 дней', 'Archivo 14 días', 'Arquivo 14 dias');
+  String get archiveHint => _t(
+        'Browse past morning briefs — build the habit of reading weather, not chasing headlines.',
+        'Листай прошлые утренние сводки — привычка читать погоду, а не гнаться за новостью.',
+        'Revisa resúmenes pasados — hábito de leer el clima, no perseguir titulares.',
+        'Revise resumos passados — hábito de ler o clima, não perseguir manchetes.',
+      );
+  String get learnTitle => _t('How to read the pulse', 'Как читать пульс', 'Cómo leer el pulso', 'Como ler o pulso');
+  String get learnIntro => _t(
+        'Short guide: why five cards exist and how not to turn macro into signals.',
+        'Короткий гид: зачем пять карточек и как не превратить макро в сигналы.',
+        'Guía corta: por qué hay cinco tarjetas y cómo no convertir macro en señales.',
+        'Guia curta: por que existem cinco cartões e como não transformar macro em sinais.',
+      );
+  String get glossaryTitle => _t('Shared language', 'Общий язык', 'Lenguaje compartido', 'Linguagem compartilhada');
+  String get glossaryHint => _t(
+        'Terms in plain language. Full curriculum lives in Trade Master.',
+        'Термины простым языком. Глубокая система — в Trade Master.',
+        'Términos en lenguaje claro. El currículo completo está en Trade Master.',
+        'Termos em linguagem clara. O currículo completo está no Trade Master.',
+      );
+  String get profileTitle => _t('Profile', 'Профиль', 'Perfil', 'Perfil');
+  String get language => _t('Language', 'Язык', 'Idioma', 'Idioma');
+  String get community => _t('Community', 'Сообщество', 'Comunidad', 'Comunidade');
+  String get joinDeskClub => _t('Join Desk Club', 'Вступить в Desk Club', 'Unirse a Desk Club', 'Entrar no Desk Club');
+  String get deskClubSub => _t(
+        'EN hub: practice · structure · academy',
+        'EN-хаб портфеля: практика · структура · академия',
+        'Hub EN: práctica · estructura · academia',
+        'Hub EN: prática · estrutura · academia',
+      );
+  String get softAcademy => _t(
+        'Want the full system → Trade Master (paid)',
+        'Хочешь систему целиком → Trade Master (платно)',
+        '¿Quieres el sistema completo? → Trade Master (de pago)',
+        'Quer o sistema completo? → Trade Master (pago)',
+      );
+  String get about => _t('About', 'О приложении', 'Acerca de', 'Sobre o app');
+  String get aboutBody => _t(
+        'Macro Pulse = Free #3 in the funnel:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nGoal: daily macro literacy in 2–3 minutes.',
+        'Macro Pulse = Free #3 в воронке:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nЦель: ежедневная макро-грамотность за 2–3 минуты.',
+        'Macro Pulse = Free #3 en el embudo:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nMeta: alfabetización macro diaria en 2–3 minutos.',
+        'Macro Pulse = Free #3 no funil:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nMeta: alfabetização macro diária em 2–3 minutos.',
+      );
+  String get resetLegal => _t(
+        'Show disclaimer again',
+        'Показать дисклеймер снова',
+        'Mostrar aviso otra vez',
+        'Mostrar aviso novamente',
+      );
+  String get openLegal => _t('Rules & disclaimer', 'Правила и дисклеймер', 'Reglas y aviso', 'Regras e aviso');
+  String get visualGuide => _t('Screen concepts', 'Макеты экранов', 'Conceptos de pantalla', 'Conceitos de tela');
+  String get streakLabel => _t('Pulse days (demo)', 'Дней с пульсом (демо)', 'Días de pulso (demo)', 'Dias de pulso (demo)');
+  String get cardRates => _t('Rates', 'Ставки', 'Tasas', 'Taxas');
+  String get cardInflation => _t('Inflation', 'Инфляция', 'Inflación', 'Inflação');
+  String get cardDollar => _t('Dollar', 'Доллар', 'Dólar', 'Dólar');
+  String get cardMood => _t('Risk mood', 'Настроение', 'Ánimo de riesgo', 'Humor de risco');
+  String get cardEquities => _t('For equities', 'Для акций', 'Para acciones', 'Para ações');
+  String get meaning => _t('Meaning', 'Смысл', 'Significado', 'Significado');
+  String get howToRead => _t('How to read', 'Как читать', 'Cómo leer', 'Como ler');
+  String get limits => _t('Limits', 'Ограничения', 'Límites', 'Limites');
+  String get takeaway => _t('Takeaway', 'Вывод', 'Idea clave', 'Conclusão');
+  String get visualAnchor => _t('Visual anchor', 'Визуальный якорь', 'Ancla visual', 'Âncora visual');
+  String get homeConcept => _t(
+        'Home concept: five morning pulse cards.',
+        'Концепт главного экрана: пять карточек утреннего пульса.',
+        'Concepto de inicio: cinco tarjetas del pulso matutino.',
+        'Conceito da home: cinco cartões do pulso matinal.',
+      );
+  String get demoArchiveLen => _t(
+        'demo archive length',
+        'учебный архив в демо',
+        'largo del archivo demo',
+        'tamanho do arquivo demo',
+      );
 }

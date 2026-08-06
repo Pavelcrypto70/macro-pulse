@@ -7,9 +7,9 @@ import '../widgets/common.dart';
 import 'card_detail_screen.dart';
 
 class PulseHomeScreen extends StatelessWidget {
-  const PulseHomeScreen({super.key, required this.s, required this.isRu});
+  const PulseHomeScreen({super.key, required this.s, required this.lang});
   final S s;
-  final bool isRu;
+  final AppLang lang;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +42,9 @@ class PulseHomeScreen extends StatelessWidget {
                     children: [
                       SectionTitle(s.todayPulse),
                       const SizedBox(height: 8),
-                      Text(
-                        day.dateIso,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      Text(day.dateIso, style: Theme.of(context).textTheme.labelLarge),
                       const SizedBox(height: 8),
-                      Text(
-                        day.summary.of(isRu),
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
+                      Text(day.summary.of(lang), style: Theme.of(context).textTheme.bodyLarge),
                     ],
                   ),
                 ),
@@ -69,16 +63,11 @@ class PulseHomeScreen extends StatelessWidget {
                 index: i + 1,
                 card: card,
                 s: s,
-                isRu: isRu,
+                lang: lang,
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => CardDetailScreen(
-                        day: day,
-                        card: card,
-                        s: s,
-                        isRu: isRu,
-                      ),
+                      builder: (_) => CardDetailScreen(day: day, card: card, s: s, lang: lang),
                     ),
                   );
                 },
@@ -89,10 +78,7 @@ class PulseHomeScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 32),
-            child: DeskClubButton(
-              label: s.joinDeskClub,
-              subtitle: s.deskClubSub,
-            ),
+            child: DeskClubButton(label: s.joinDeskClub, subtitle: s.deskClubSub),
           ),
         ),
       ],
@@ -105,45 +91,31 @@ class _PulseCardTile extends StatelessWidget {
     required this.index,
     required this.card,
     required this.s,
-    required this.isRu,
+    required this.lang,
     required this.onTap,
   });
 
   final int index;
   final PulseCard card;
   final S s;
-  final bool isRu;
+  final AppLang lang;
   final VoidCallback onTap;
 
-  String get _kindLabel {
-    switch (card.kind) {
-      case PulseCardKind.rates:
-        return s.cardRates;
-      case PulseCardKind.inflation:
-        return s.cardInflation;
-      case PulseCardKind.dollar:
-        return s.cardDollar;
-      case PulseCardKind.mood:
-        return s.cardMood;
-      case PulseCardKind.equities:
-        return s.cardEquities;
-    }
-  }
+  String get _kindLabel => switch (card.kind) {
+        PulseCardKind.rates => s.cardRates,
+        PulseCardKind.inflation => s.cardInflation,
+        PulseCardKind.dollar => s.cardDollar,
+        PulseCardKind.mood => s.cardMood,
+        PulseCardKind.equities => s.cardEquities,
+      };
 
-  IconData get _icon {
-    switch (card.kind) {
-      case PulseCardKind.rates:
-        return Icons.account_balance_outlined;
-      case PulseCardKind.inflation:
-        return Icons.shopping_bag_outlined;
-      case PulseCardKind.dollar:
-        return Icons.attach_money;
-      case PulseCardKind.mood:
-        return Icons.psychology_alt_outlined;
-      case PulseCardKind.equities:
-        return Icons.show_chart;
-    }
-  }
+  IconData get _icon => switch (card.kind) {
+        PulseCardKind.rates => Icons.account_balance_outlined,
+        PulseCardKind.inflation => Icons.shopping_bag_outlined,
+        PulseCardKind.dollar => Icons.attach_money,
+        PulseCardKind.mood => Icons.psychology_alt_outlined,
+        PulseCardKind.equities => Icons.show_chart,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -169,29 +141,18 @@ class _PulseCardTile extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      '$index · $_kindLabel',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
+                    Text('$index · $_kindLabel', style: Theme.of(context).textTheme.labelLarge),
                     const Spacer(),
                     Text(
                       s.tapForDetail,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.brassDim,
-                          ),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.brassDim),
                     ),
                   ],
                 ),
                 const SizedBox(height: 6),
-                Text(
-                  card.headline.of(isRu),
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                Text(card.headline.of(lang), style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 6),
-                Text(
-                  card.valueLabel.of(isRu),
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
+                Text(card.valueLabel.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),

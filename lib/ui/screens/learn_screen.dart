@@ -4,9 +4,9 @@ import '../../l10n/strings.dart';
 import '../widgets/common.dart';
 
 class LearnScreen extends StatelessWidget {
-  const LearnScreen({super.key, required this.s, required this.isRu});
+  const LearnScreen({super.key, required this.s, required this.lang});
   final S s;
-  final bool isRu;
+  final AppLang lang;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class LearnScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SectionTitle(isRu ? 'Визуальный якорь' : 'Visual anchor'),
+              SectionTitle(s.visualAnchor),
               const SizedBox(height: 10),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -34,12 +34,7 @@ class LearnScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                isRu
-                    ? 'Концепт главного экрана: пять карточек утреннего пульса.'
-                    : 'Home concept: five morning pulse cards.',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              Text(s.homeConcept, style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
         ),
@@ -51,13 +46,13 @@ class LearnScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(lesson.title.of(isRu), style: Theme.of(context).textTheme.titleMedium),
+                  Text(lesson.title.of(lang), style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 8),
-                  Text(lesson.body.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                  Text(lesson.body.of(lang), style: Theme.of(context).textTheme.bodyLarge),
                   const SizedBox(height: 10),
-                  SectionTitle(isRu ? 'Вывод' : 'Takeaway'),
+                  SectionTitle(s.takeaway),
                   const SizedBox(height: 6),
-                  Text(lesson.takeaway.of(isRu), style: Theme.of(context).textTheme.bodyMedium),
+                  Text(lesson.takeaway.of(lang), style: Theme.of(context).textTheme.bodyMedium),
                 ],
               ),
             ),

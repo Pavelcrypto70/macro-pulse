@@ -15,12 +15,10 @@ class AppState extends ChangeNotifier {
   bool ready = false;
 
   S get s => S(lang);
-  bool get isRu => lang.isRu;
 
   Future<void> load() async {
     final p = await SharedPreferences.getInstance();
-    final code = p.getString(_kLang);
-    lang = code == 'ru' ? AppLang.ru : AppLang.en;
+    lang = appLangFromCode(p.getString(_kLang));
     legalAccepted = p.getBool(_kLegal) ?? false;
     ready = true;
     notifyListeners();

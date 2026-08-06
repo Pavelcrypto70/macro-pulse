@@ -5,9 +5,9 @@ import '../widgets/common.dart';
 import 'card_detail_screen.dart';
 
 class ArchiveScreen extends StatelessWidget {
-  const ArchiveScreen({super.key, required this.s, required this.isRu});
+  const ArchiveScreen({super.key, required this.s, required this.lang});
   final S s;
-  final bool isRu;
+  final AppLang lang;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +37,13 @@ class ArchiveScreen extends StatelessWidget {
                         children: [
                           Text(day.dateIso, style: Theme.of(ctx).textTheme.labelLarge),
                           const SizedBox(height: 8),
-                          Text(day.summary.of(isRu), style: Theme.of(ctx).textTheme.titleMedium),
+                          Text(day.summary.of(lang), style: Theme.of(ctx).textTheme.titleMedium),
                           const SizedBox(height: 14),
                           ...day.cards.map((c) {
                             return ListTile(
                               contentPadding: EdgeInsets.zero,
-                              title: Text(c.headline.of(isRu)),
-                              subtitle: Text(c.valueLabel.of(isRu)),
+                              title: Text(c.headline.of(lang)),
+                              subtitle: Text(c.valueLabel.of(lang)),
                               trailing: const Icon(Icons.chevron_right),
                               onTap: () {
                                 Navigator.pop(ctx);
@@ -53,7 +53,7 @@ class ArchiveScreen extends StatelessWidget {
                                       day: day,
                                       card: c,
                                       s: s,
-                                      isRu: isRu,
+                                      lang: lang,
                                     ),
                                   ),
                                 );
@@ -77,7 +77,7 @@ class ArchiveScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text(day.summary.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                  Text(day.summary.of(lang), style: Theme.of(context).textTheme.bodyLarge),
                 ],
               ),
             ),

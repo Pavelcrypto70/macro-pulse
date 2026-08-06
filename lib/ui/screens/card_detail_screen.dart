@@ -12,19 +12,19 @@ class CardDetailScreen extends StatelessWidget {
     required this.day,
     required this.card,
     required this.s,
-    required this.isRu,
+    required this.lang,
   });
 
   final PulseDay day;
   final PulseCard card;
   final S s;
-  final bool isRu;
+  final AppLang lang;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(card.headline.of(isRu)),
+        title: Text(card.headline.of(lang)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -41,9 +41,9 @@ class CardDetailScreen extends StatelessWidget {
               children: [
                 SectionTitle(s.whatItMeans),
                 const SizedBox(height: 8),
-                Text(card.valueLabel.of(isRu), style: Theme.of(context).textTheme.titleMedium),
+                Text(card.valueLabel.of(lang), style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 10),
-                Text(card.plainMeaning.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(card.plainMeaning.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -54,7 +54,7 @@ class CardDetailScreen extends StatelessWidget {
               children: [
                 SectionTitle(s.forEquities),
                 const SizedBox(height: 8),
-                Text(card.forEquities.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(card.forEquities.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -65,7 +65,7 @@ class CardDetailScreen extends StatelessWidget {
               children: [
                 SectionTitle(s.whyItMatters),
                 const SizedBox(height: 8),
-                Text(card.whyItMatters.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(card.whyItMatters.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -76,7 +76,7 @@ class CardDetailScreen extends StatelessWidget {
               children: [
                 SectionTitle(s.commonMistake),
                 const SizedBox(height: 8),
-                Text(card.commonMistake.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(card.commonMistake.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -92,7 +92,7 @@ class CardDetailScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => GlossaryDetailScreen(entry: e, s: s, isRu: isRu),
+                      builder: (_) => GlossaryDetailScreen(entry: e, s: s, lang: lang),
                     ),
                   );
                 },
@@ -102,8 +102,8 @@ class CardDetailScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(e.title.of(isRu), style: Theme.of(context).textTheme.titleMedium),
-                          Text(e.subtitle.of(isRu), style: Theme.of(context).textTheme.bodySmall),
+                          Text(e.title.of(lang), style: Theme.of(context).textTheme.titleMedium),
+                          Text(e.subtitle.of(lang), style: Theme.of(context).textTheme.bodySmall),
                         ],
                       ),
                     ),

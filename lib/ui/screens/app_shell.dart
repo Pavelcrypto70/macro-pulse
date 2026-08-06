@@ -23,6 +23,7 @@ class _AppShellState extends State<AppShell> {
   Widget build(BuildContext context) {
     final state = widget.state;
     final s = state.s;
+    final lang = state.lang;
 
     if (!state.ready) {
       return const Scaffold(
@@ -31,17 +32,14 @@ class _AppShellState extends State<AppShell> {
     }
 
     if (!state.legalAccepted) {
-      return LegalGateScreen(
-        s: s,
-        onAccept: () => state.acceptLegal(),
-      );
+      return LegalGateScreen(s: s, onAccept: () => state.acceptLegal());
     }
 
     final pages = [
-      PulseHomeScreen(s: s, isRu: state.isRu),
-      ArchiveScreen(s: s, isRu: state.isRu),
-      LearnScreen(s: s, isRu: state.isRu),
-      GlossaryScreen(s: s, isRu: state.isRu),
+      PulseHomeScreen(s: s, lang: lang),
+      ArchiveScreen(s: s, lang: lang),
+      LearnScreen(s: s, lang: lang),
+      GlossaryScreen(s: s, lang: lang),
       ProfileScreen(state: state),
     ];
 

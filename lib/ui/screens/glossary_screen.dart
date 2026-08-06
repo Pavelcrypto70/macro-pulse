@@ -5,9 +5,9 @@ import '../../models/models.dart';
 import '../widgets/common.dart';
 
 class GlossaryScreen extends StatelessWidget {
-  const GlossaryScreen({super.key, required this.s, required this.isRu});
+  const GlossaryScreen({super.key, required this.s, required this.lang});
   final S s;
-  final bool isRu;
+  final AppLang lang;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,16 @@ class GlossaryScreen extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => GlossaryDetailScreen(entry: e, s: s, isRu: isRu),
+                    builder: (_) => GlossaryDetailScreen(entry: e, s: s, lang: lang),
                   ),
                 );
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(e.title.of(isRu), style: Theme.of(context).textTheme.titleMedium),
+                  Text(e.title.of(lang), style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 4),
-                  Text(e.subtitle.of(isRu), style: Theme.of(context).textTheme.bodySmall),
+                  Text(e.subtitle.of(lang), style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
             ),
@@ -50,29 +50,29 @@ class GlossaryDetailScreen extends StatelessWidget {
     super.key,
     required this.entry,
     required this.s,
-    required this.isRu,
+    required this.lang,
   });
 
   final GlossaryEntry entry;
   final S s;
-  final bool isRu;
+  final AppLang lang;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(entry.title.of(isRu))),
+      appBar: AppBar(title: Text(entry.title.of(lang))),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
         children: [
-          Text(entry.subtitle.of(isRu), style: Theme.of(context).textTheme.bodyMedium),
+          Text(entry.subtitle.of(lang), style: Theme.of(context).textTheme.bodyMedium),
           const SizedBox(height: 14),
           SoftCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SectionTitle(isRu ? 'Смысл' : 'Meaning'),
+                SectionTitle(s.meaning),
                 const SizedBox(height: 8),
-                Text(entry.body.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(entry.body.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -81,9 +81,9 @@ class GlossaryDetailScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SectionTitle(isRu ? 'Как читать' : 'How to read'),
+                SectionTitle(s.howToRead),
                 const SizedBox(height: 8),
-                Text(entry.mechanics.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(entry.mechanics.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -92,9 +92,9 @@ class GlossaryDetailScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SectionTitle(isRu ? 'Ограничения' : 'Limits'),
+                SectionTitle(s.limits),
                 const SizedBox(height: 8),
-                Text(entry.limits.of(isRu), style: Theme.of(context).textTheme.bodyLarge),
+                Text(entry.limits.of(lang), style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),

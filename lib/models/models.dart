@@ -1,11 +1,30 @@
+import '../l10n/strings.dart';
+
 enum PulseCardKind { rates, inflation, dollar, mood, equities }
 
 class LocalizedText {
-  const LocalizedText({required this.en, required this.ru});
+  const LocalizedText({
+    required this.en,
+    required this.ru,
+    required this.es,
+    required this.pt,
+  });
+
   final String en;
   final String ru;
-  String of(bool isRu) => isRu ? ru : en;
+  final String es;
+  final String pt;
+
+  String of(AppLang lang) => switch (lang) {
+        AppLang.en => en,
+        AppLang.ru => ru,
+        AppLang.es => es,
+        AppLang.pt => pt,
+      };
 }
+
+LocalizedText L(String en, String ru, String es, String pt) =>
+    LocalizedText(en: en, ru: ru, es: es, pt: pt);
 
 class PulseCard {
   const PulseCard({
