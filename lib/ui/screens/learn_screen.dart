@@ -58,6 +58,9 @@ class LearnScreen extends StatelessWidget {
             ),
           );
         }),
+        const SizedBox(height: 14),
+        TradeMasterButton(label: s.joinTradeMaster, subtitle: s.tradeMasterSub),
+        const SizedBox(height: 10),
         DeskClubButton(label: s.joinDeskClub, subtitle: s.deskClubSub),
       ],
     );

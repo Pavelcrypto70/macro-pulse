@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_PATHS = [
     ROOT / "assets" / "data" / "live_snapshot.json",
     ROOT / "web" / "data" / "live_snapshot.json",
+    ROOT / "web" / "live_snapshot.json",
 ]
 
 UA = {"User-Agent": "Mozilla/5.0 MacroPulseFetcher/1.0", "Accept": "*/*"}
@@ -153,7 +154,7 @@ def build_snapshot() -> dict:
         "schema": 1,
         "asOf": as_of,
         "fetchedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "stamp": "WEB · r4",
+        "stamp": "WEB · r8",
         "disclaimer": (
             "Delayed public educational snapshot. Not a trading terminal. "
             "Not financial advice."

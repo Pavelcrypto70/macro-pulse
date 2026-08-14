@@ -24,7 +24,6 @@ jobs:
           python-version: "3.12"
       - name: Refresh live snapshot before build
         run: python tool/fetch_live_snapshot.py
-        continue-on-error: true
       - uses: subosito/flutter-action@v2
         with:
           channel: stable

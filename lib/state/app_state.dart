@@ -15,7 +15,12 @@ class AppState extends ChangeNotifier {
   static const _kLangChosen = 'lang_chosen_v1';
   static const _kLegal = 'legal_ok';
   static const communityUrl = 'https://t.me/Desk_Club';
+  static const tradeMasterUrl = 'https://pavelcrypto70.github.io/';
   static const sourceTag = 'macro-pulse';
+  static const privacyUrl =
+      'https://pavelcrypto70.github.io/macro-pulse-privacy.html';
+  static const termsUrl =
+      'https://pavelcrypto70.github.io/macro-pulse-terms.html';
 
   final LivePulseRepository _pulseRepo;
 

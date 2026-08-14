@@ -43,7 +43,7 @@ class S {
         'Clima matinal do mercado · 5 cartões',
       );
   String get freeBadge => 'FREE #3 · EN/RU/ES/PT';
-  String get webBadge => 'WEB · r4';
+  String get webBadge => 'WEB · r8';
   String get educationOnly => _t(
         'Education only. Not financial advice.',
         'Только обучение. Не финансовый совет.',
@@ -155,6 +155,18 @@ class S {
         'Hub EN: práctica · estructura · academia',
         'Hub EN: prática · estrutura · academia',
       );
+  String get joinTradeMaster => _t(
+        'Continue in Trade Master',
+        'Продолжить в Trade Master',
+        'Continuar en Trade Master',
+        'Continuar no Trade Master',
+      );
+  String get tradeMasterSub => _t(
+        'Full curriculum: lessons · quizzes · certificate',
+        'Полный курс: уроки · квизы · сертификат',
+        'Currículo completo: lecciones · quizzes · certificado',
+        'Currículo completo: lições · quizzes · certificado',
+      );
   String get softAcademy => _t(
         'Want the full system → Trade Master (paid)',
         'Хочешь систему целиком → Trade Master (платно)',
@@ -167,6 +179,18 @@ class S {
         'Macro Pulse = Free #3 в воронке:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nЦель: ежедневная макро-грамотность за 2–3 минуты.',
         'Macro Pulse = Free #3 en el embudo:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nMeta: alfabetización macro diaria en 2–3 minutos.',
         'Macro Pulse = Free #3 no funil:\nPaper League + Structure Radar + Macro Pulse → Desk Club → Trade Master.\n\nMeta: alfabetização macro diária em 2–3 minutos.',
+      );
+  String get privacyPolicy => _t(
+        'Privacy Policy',
+        'Политика конфиденциальности',
+        'Política de privacidad',
+        'Política de privacidade',
+      );
+  String get termsOfService => _t(
+        'Terms of Service',
+        'Условия использования',
+        'Términos de servicio',
+        'Termos de serviço',
       );
   String get resetLegal => _t(
         'Show disclaimer again',

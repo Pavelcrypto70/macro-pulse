@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../l10n/strings.dart';
 import '../../state/app_state.dart';
 import '../../theme/app_colors.dart';
@@ -60,6 +61,8 @@ class ProfileScreen extends StatelessWidget {
         SectionTitle(s.community),
         const SizedBox(height: 8),
         DeskClubButton(label: s.joinDeskClub, subtitle: s.deskClubSub),
+        const SizedBox(height: 10),
+        TradeMasterButton(label: s.joinTradeMaster, subtitle: s.tradeMasterSub),
         const SizedBox(height: 12),
         SoftCard(
           child: Column(
@@ -68,8 +71,6 @@ class ProfileScreen extends StatelessWidget {
               SectionTitle(s.about),
               const SizedBox(height: 8),
               Text(s.aboutBody, style: Theme.of(context).textTheme.bodyLarge),
-              const SizedBox(height: 10),
-              Text(s.softAcademy, style: Theme.of(context).textTheme.bodyMedium),
               const SizedBox(height: 8),
               Text('source=${AppState.sourceTag}', style: Theme.of(context).textTheme.labelLarge),
             ],
@@ -110,6 +111,21 @@ class ProfileScreen extends StatelessWidget {
         OutlinedButton(
           onPressed: () async => state.resetLegal(),
           child: Text(s.resetLegal),
+        ),
+        const SizedBox(height: 8),
+        TextButton(
+          onPressed: () => launchUrl(
+            Uri.parse(AppState.privacyUrl),
+            mode: LaunchMode.externalApplication,
+          ),
+          child: Text(s.privacyPolicy),
+        ),
+        TextButton(
+          onPressed: () => launchUrl(
+            Uri.parse(AppState.termsUrl),
+            mode: LaunchMode.externalApplication,
+          ),
+          child: Text(s.termsOfService),
         ),
         const SizedBox(height: 8),
         Text(s.educationOnly, style: Theme.of(context).textTheme.bodySmall),

@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "asOf": "2026-08-06",
-  "fetchedAt": "2026-08-06T13:41:43Z",
-  "stamp": "WEB · r4",
+  "asOf": "2026-08-14",
+  "fetchedAt": "2026-08-14T07:43:13Z",
+  "stamp": "WEB · r8",
   "disclaimer": "Delayed public educational snapshot. Not a trading terminal. Not financial advice.",
   "sources": [
     "FRED CPIAUCSL",
@@ -15,49 +15,49 @@
     "metric": "EFFR",
     "value": 3.63,
     "prev": 3.63,
-    "asOf": "2026-08-04",
+    "asOf": "2026-08-12",
     "source": "FRED DFF",
-    "us10y": 4.617,
-    "us10yAsOf": "2026-08-05",
-    "us10yChgPct1d": -0.22
+    "us10y": 4.641,
+    "us10yAsOf": "2026-08-13",
+    "us10yChgPct1d": -0.88
   },
   "inflation": {
     "metric": "CPIAUCSL_YoY",
-    "value": 3.46,
-    "index": 332.568,
-    "period": "2026-06",
-    "vsPeriod": "2025-06",
-    "asOf": "2026-06-01",
+    "value": 3.3,
+    "index": 332.813,
+    "period": "2026-07",
+    "vsPeriod": "2025-07",
+    "asOf": "2026-07-01",
     "source": "FRED CPIAUCSL",
-    "breakeven5y": 2.18,
-    "breakevenAsOf": "2026-08-05"
+    "breakeven5y": 2.21,
+    "breakevenAsOf": "2026-08-13"
   },
   "dollar": {
     "metric": "DXY_proxy",
-    "value": 99.742,
-    "chgPct1d": 0.05,
-    "asOf": "2026-08-06",
+    "value": 99.805,
+    "chgPct1d": -0.16,
+    "asOf": "2026-08-14",
     "source": "Yahoo DX-Y.NYB",
     "fx": {
-      "date": "2026-08-05",
-      "EUR": 0.8655,
-      "BRL": 5.1153,
-      "MXN": 17.212
+      "date": "2026-08-13",
+      "EUR": 0.867,
+      "BRL": 5.1811,
+      "MXN": 17.0534
     }
   },
   "mood": {
     "metric": "VIX",
-    "value": 15.85,
-    "chgPct1d": 0.25,
-    "asOf": "2026-08-06",
-    "regime": "normal",
+    "value": 14.64,
+    "chgPct1d": 0.07,
+    "asOf": "2026-08-14",
+    "regime": "calm",
     "source": "Yahoo ^VIX"
   },
   "equities": {
     "metric": "SPX",
-    "value": 7723.5498,
-    "chgPct1d": -0.17,
-    "asOf": "2026-08-05",
+    "value": 7798.9902,
+    "chgPct1d": 0.65,
+    "asOf": "2026-08-13",
     "source": "Yahoo ^GSPC"
   }
 }

@@ -2,7 +2,7 @@ import '../models/models.dart';
 
 /// Curated educational copy pack. Numeric values come from [LivePulseRepository].
 class PulseCatalog {
-  static const stamp = 'WEB · r4';
+  static const stamp = 'WEB · r8';
   static const demoAsOf = '2026-08-06';
 
   /// Explanatory template for "today" — values overwritten by live snapshot.

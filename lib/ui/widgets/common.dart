@@ -1,10 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../state/app_state.dart';
 import '../../theme/app_colors.dart';
 
 Future<void> openDeskClub() async {
+  debugPrint('tg_cta_tap source=${AppState.sourceTag}');
   final uri = Uri.parse(AppState.communityUrl);
+  await launchUrl(uri, mode: LaunchMode.externalApplication);
+}
+
+Future<void> openTradeMaster() async {
+  debugPrint('tm_cta_tap source=${AppState.sourceTag}');
+  final uri = Uri.parse(AppState.tradeMasterUrl);
   await launchUrl(uri, mode: LaunchMode.externalApplication);
 }
 
@@ -97,6 +105,47 @@ class DeskClubButton extends StatelessWidget {
               border: Border.all(color: AppColors.brassDim),
             ),
             child: const Icon(Icons.forum_outlined, color: Color(0xFFC4A35A)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label, style: Theme.of(context).textTheme.titleMedium),
+                if (subtitle != null) ...[
+                  const SizedBox(height: 2),
+                  Text(subtitle!, style: Theme.of(context).textTheme.bodySmall),
+                ],
+              ],
+            ),
+          ),
+          const Icon(Icons.north_east, color: Color(0xFFC4A35A), size: 18),
+        ],
+      ),
+    );
+  }
+}
+
+class TradeMasterButton extends StatelessWidget {
+  const TradeMasterButton({super.key, required this.label, this.subtitle});
+  final String label;
+  final String? subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return SoftCard(
+      onTap: openTradeMaster,
+      child: Row(
+        children: [
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              color: AppColors.brass.withValues(alpha: 0.22),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: AppColors.brass),
+            ),
+            child: const Icon(Icons.school_outlined, color: Color(0xFFC4A35A)),
           ),
           const SizedBox(width: 12),
           Expanded(

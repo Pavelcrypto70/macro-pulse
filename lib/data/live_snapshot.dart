@@ -28,7 +28,7 @@ class LiveSnapshot {
     return LiveSnapshot(
       asOf: json['asOf'] as String? ?? '',
       fetchedAt: json['fetchedAt'] as String? ?? '',
-      stamp: json['stamp'] as String? ?? 'WEB · r4',
+      stamp: json['stamp'] as String? ?? 'WEB · r8',
       rates: LiveMetric.fromJson(json['rates'] as Map<String, dynamic>? ?? const {}),
       inflation: LiveMetric.fromJson(
         json['inflation'] as Map<String, dynamic>? ?? const {},

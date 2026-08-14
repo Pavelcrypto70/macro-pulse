@@ -1,0 +1,87 @@
+PLAY / RUSTORE — paste as-is
+Package: com.macropulse.macro_pulse
+Version: 1.0.2+3
+Category: Education
+Contact: pavelcryptoclub@gmail.com
+Privacy: https://pavelcrypto70.github.io/macro-pulse-privacy.html
+Terms: https://pavelcrypto70.github.io/macro-pulse-terms.html
+IAP: none
+Website: https://t.me/Desk_Club
+
+===== EN title =====
+Macro Pulse — morning weather
+
+===== EN short =====
+Morning macro weather in 5 cards: rates, inflation, dollar, risk, stocks.
+
+===== EN full =====
+Macro Pulse is Free #3: a 2–3 minute morning briefing on the big picture behind stocks.
+
+Five cards: rates, inflation, the dollar, risk mood, and what that usually means for equities. Plus a short Learn path and a glossary.
+
+Uses delayed public series (FRED, Yahoo Finance, FX). Education only — not a trading terminal.
+
+Languages: English, Español, Português, Русский — chosen before the legal screen.
+
+EN community: Desk Club (https://t.me/Desk_Club)
+
+Not financial advice. Not signals. Not a broker.
+
+===== ES title =====
+Macro Pulse — clima de mercados
+
+===== ES short =====
+Clima macro matinal en 5 tarjetas. Educación, no señales.
+
+===== ES full =====
+Macro Pulse es Free #3: un briefing de 2–3 minutos sobre el cuadro grande detrás de las acciones.
+
+Cinco tarjetas: tasas, inflación, dólar, ánimo de riesgo y contexto para acciones. Más lecciones cortas y glosario.
+
+Datos públicos con retraso (FRED, Yahoo, FX). Solo educación — no es un terminal de trading.
+
+Idiomas EN / ES / PT / RU. Comunidad EN: Desk Club.
+
+No es asesoramiento financiero ni señales.
+
+===== PT title =====
+Macro Pulse — clima de mercados
+
+===== PT short =====
+Clima macro matinal em 5 cards. Educação, não sinais.
+
+===== PT full =====
+Macro Pulse é o Free #3: um briefing de 2–3 minutos sobre o quadro grande por trás das ações.
+
+Cinco cards: juros, inflação, dólar, humor de risco e contexto para ações. Mais aulas curtas e glossário.
+
+Séries públicas com atraso (FRED, Yahoo, FX). Só educação — não é terminal de trading.
+
+Idiomas EN / ES / PT / RU. Comunidade EN: Desk Club.
+
+Não é aconselhamento financeiro nem sinais.
+
+===== RU title =====
+Macro Pulse — утренняя погода
+
+===== RU short =====
+Утренняя макро-погода в 5 карточках. Обучение, не сигналы.
+
+===== RU full =====
+Macro Pulse — Free #3: утренний брифинг на 2–3 минуты про большую картину за акциями.
+
+Пять карточек: ставки, инфляция, доллар, настроение риска, вывод для акций. Плюс короткие уроки и глоссарий.
+
+Отложенные публичные ряды (FRED, Yahoo, FX). Только обучение — не торговый терминал.
+
+Языки EN / ES / PT / RU. EN-хаб Desk Club.
+
+Не финансовый совет и не сигналы.
+
+===== What's new =====
+First public Android build. Choose language on the first screen. Education only — not a broker.
+
+===== Files to upload =====
+store/icon-512.png
+store/feature-graphic.png
+store/screenshots/  (order in SCREENSHOTS.md)
