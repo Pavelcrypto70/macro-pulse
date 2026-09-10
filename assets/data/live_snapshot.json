@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "asOf": "2026-09-09",
-  "fetchedAt": "2026-09-09T15:12:01Z",
+  "asOf": "2026-09-10",
+  "fetchedAt": "2026-09-10T15:03:36Z",
   "stamp": "WEB · r8",
   "disclaimer": "Delayed public educational snapshot. Not a trading terminal. Not financial advice.",
   "sources": [
@@ -15,11 +15,11 @@
     "metric": "EFFR",
     "value": 3.63,
     "prev": 3.63,
-    "asOf": "2026-09-07",
+    "asOf": "2026-09-08",
     "source": "FRED DFF",
-    "us10y": 4.814,
-    "us10yAsOf": "2026-09-09",
-    "us10yChgPct1d": 0.17
+    "us10y": 4.918,
+    "us10yAsOf": "2026-09-10",
+    "us10yChgPct1d": 1.67
   },
   "inflation": {
     "metric": "CPIAUCSL_YoY",
@@ -29,35 +29,35 @@
     "vsPeriod": "2025-07",
     "asOf": "2026-07-01",
     "source": "FRED CPIAUCSL",
-    "breakeven5y": 2.4,
-    "breakevenAsOf": "2026-09-08"
+    "breakeven5y": 2.41,
+    "breakevenAsOf": "2026-09-09"
   },
   "dollar": {
     "metric": "DXY_proxy",
-    "value": 98.711,
-    "chgPct1d": -0.13,
-    "asOf": "2026-09-09",
+    "value": 98.919,
+    "chgPct1d": 0.15,
+    "asOf": "2026-09-10",
     "source": "Yahoo DX-Y.NYB",
     "fx": {
-      "date": "2026-09-09",
-      "EUR": 0.85822,
-      "BRL": 5.0889,
-      "MXN": 16.9025
+      "date": "2026-09-10",
+      "EUR": 0.86088,
+      "BRL": 5.1247,
+      "MXN": 16.9435
     }
   },
   "mood": {
     "metric": "VIX",
-    "value": 16.08,
-    "chgPct1d": 2.29,
-    "asOf": "2026-09-09",
+    "value": 17.45,
+    "chgPct1d": 6.01,
+    "asOf": "2026-09-10",
     "regime": "normal",
     "source": "Yahoo ^VIX"
   },
   "equities": {
     "metric": "SPX",
-    "value": 7628.7998,
-    "chgPct1d": -0.58,
-    "asOf": "2026-09-09",
+    "value": 7600.9302,
+    "chgPct1d": -0.46,
+    "asOf": "2026-09-10",
     "source": "Yahoo ^GSPC"
   }
 }
