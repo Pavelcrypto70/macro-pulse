@@ -57,7 +57,15 @@ class _AppShellState extends State<AppShell> {
         backgroundColor: AppColors.inkElevated,
         indicatorColor: AppColors.brass.withValues(alpha: 0.18),
         selectedIndex: index,
-        onDestinationSelected: (i) => setState(() => index = i),
+        onDestinationSelected: (i) {
+          if (!state.firstGestureDone && i != 0) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(s.gestureTabsLocked)),
+            );
+            return;
+          }
+          setState(() => index = i);
+        },
         destinations: [
           NavigationDestination(icon: const Icon(Icons.wb_twilight_outlined), label: s.tabPulse),
           NavigationDestination(icon: const Icon(Icons.history), label: s.tabArchive),

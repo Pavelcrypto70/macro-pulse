@@ -46,6 +46,13 @@ class PulseHomeScreen extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(s.tagline, style: Theme.of(context).textTheme.bodyMedium),
                 const SizedBox(height: 10),
+                if (!state.firstGestureDone) ...[
+                  Text(
+                    s.weatherLine,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(color: AppColors.brass),
+                  ),
+                  const SizedBox(height: 10),
+                ],
                 Text(
                   state.pulseIsLive ? s.liveDataNote : s.demoNote,
                   style: Theme.of(context).textTheme.bodySmall,
@@ -96,6 +103,7 @@ class PulseHomeScreen extends StatelessWidget {
                 s: s,
                 lang: lang,
                 onTap: () {
+                  state.markFirstGestureDone();
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => CardDetailScreen(day: day, card: card, s: s, lang: lang),

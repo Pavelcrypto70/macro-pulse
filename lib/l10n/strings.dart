@@ -223,4 +223,16 @@ class S {
         'largo del archivo demo',
         'tamanho do arquivo demo',
       );
+  String get weatherLine => _t(
+        'Today’s weather is in the cards. Open one.',
+        'Погода дня — в карточках. Открой одну.',
+        'El clima de hoy está en las tarjetas. Abre una.',
+        'O clima de hoje está nos cartões. Abra um.',
+      );
+  String get gestureTabsLocked => _t(
+        'Open one card first.',
+        'Сначала открой одну карточку.',
+        'Abre una tarjeta primero.',
+        'Abra um cartão primeiro.',
+      );
 }

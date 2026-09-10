@@ -14,6 +14,7 @@ class AppState extends ChangeNotifier {
   static const _kLang = 'lang';
   static const _kLangChosen = 'lang_chosen_v1';
   static const _kLegal = 'legal_ok';
+  static const _kGesture = 'first_gesture_v1';
   static const communityUrl = 'https://t.me/Desk_Club';
   static const tradeMasterUrl = 'https://pavelcrypto70.github.io/';
   static const sourceTag = 'macro-pulse';
@@ -27,6 +28,7 @@ class AppState extends ChangeNotifier {
   AppLang lang = AppLang.en;
   bool languageChosen = false;
   bool legalAccepted = false;
+  bool firstGestureDone = false;
   bool ready = false;
 
   PulseData? pulse;
@@ -46,6 +48,11 @@ class AppState extends ChangeNotifier {
 
   Future<void> load() async {
     final p = await SharedPreferences.getInstance();
+    const stamp = 'macro_pulse_fresh_20260910';
+    if (!(p.getBool(stamp) ?? false)) {
+      await p.remove(_kGesture);
+      await p.setBool(stamp, true);
+    }
     languageChosen = p.getBool(_kLangChosen) ?? false;
     if (languageChosen) {
       lang = appLangFromCode(p.getString(_kLang));
@@ -53,6 +60,7 @@ class AppState extends ChangeNotifier {
       lang = AppLang.en; // neutral until user picks
     }
     legalAccepted = p.getBool(_kLegal) ?? false;
+    firstGestureDone = p.getBool(_kGesture) ?? false;
     // Show asset/cache immediately, then upgrade from network.
     pulse = await _pulseRepo.load(forceNetwork: false);
     ready = true;
@@ -89,6 +97,14 @@ class AppState extends ChangeNotifier {
     final p = await SharedPreferences.getInstance();
     await p.setString(_kLang, value.code);
     await p.setBool(_kLangChosen, true);
+    notifyListeners();
+  }
+
+  Future<void> markFirstGestureDone() async {
+    if (firstGestureDone) return;
+    firstGestureDone = true;
+    final p = await SharedPreferences.getInstance();
+    await p.setBool(_kGesture, true);
     notifyListeners();
   }
 
